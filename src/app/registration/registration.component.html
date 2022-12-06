@@ -1,0 +1,55 @@
+<div class="container-fluid">
+<form #userform="ngForm" novalidate (ngSubmit)="onsubmit()" >
+    
+    {{userform.value|json}}
+    <div class="form-group">
+        <label><b>FirstName:</b></label>
+        <input type="text" [class.is-invalid]="name.invalid &&name.touched" class="form-control" required #name="ngModel" [(ngModel)]="usermodel.fname" name="fname">
+        <small [class.d-none]="name.valid || name.untouched" >name is required</small>
+    </div>
+    <div class="form-group">
+        <label><b>LastName:</b></label>
+        <input type="text" class="form-control"  [(ngModel)]="usermodel.lname" name="lname"></div>
+
+        <label><b>email:</b></label>
+        <input type="email" class="form-control"  [class.is-invalid]="e.invalid &&e.touched" required #e="ngModel"  [(ngModel)]="usermodel.email" name="email">
+        <small [class.d-none]="e.valid || e.untouched">email is required</small>
+        <label><b>Phone Number:</b></label>
+        <input type="text" class="form-control"  [class.is-invalid]="phn.invalid &&phn.touched" #phn="ngModel"  required  [(ngModel)]="usermodel.phone" pattern="^\d{10}$" name="phno">
+        <div *ngIf="phn.errors && phn.valid && phn.untouched">
+        <small >phone number is required or it should be 10 characters</small></div>
+        <label><b>gender:</b></label>
+        <select class="custom-select"  [(ngModel)]="usermodel.gender" name="gender">
+           
+            <option selected>Gender</option>
+            <option *ngFor="let gen of gender">{{gen}}</option>
+            
+        </select>
+      
+        <div ngModelGroup="address">
+        
+        <label><b>street:</b></label>
+        <input type="text" class="form-control"   [(ngModel)]="usermodel.street" name="street">
+        <label><b>city:</b></label>
+        <input type="text" class="form-control"  [(ngModel)]="usermodel.city" name="city">
+        <label><b>state:</b></label>
+        <input type="text" class="form-control"  [(ngModel)]="usermodel.state" name="state">
+        <label><b>postalcode:</b></label>
+        <input type="text" class="form-control"  [(ngModel)]="usermodel.pincode" name="pincode">
+        
+    </div>
+    <div class="form-group">
+        <label><b>Password :</b></label>
+        <input type="password" [class.is-invalid]="pass.invalid &&pass.touched" class="form-control" required  #pass="ngModel" [(ngModel)]="usermodel.pass" name="pass">
+       
+        <small [class.d-none]="pass.valid || pass.untouched" >password must contain atleast 8 characters</small>
+    </div>
+    
+       
+     <button class="btn btn-primary" type="submit" [disabled]="userform.form.invalid">Submit</button>
+
+
+
+
+ 
+</form></div>

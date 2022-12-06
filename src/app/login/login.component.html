@@ -1,0 +1,21 @@
+<div class="container-fluid">
+    <form #userform="ngForm" novalidate (ngSubmit)="onsubmit()" >
+        <label><b>email:</b></label>
+        <input type="email" class="form-control"  [class.is-invalid]="e.invalid &&e.touched" required #e="ngModel"  [(ngModel)]="usermodel.email" name="email">
+        <small [class.d-none]="e.valid || e.untouched">email is required</small>
+       
+        
+        <div class="form-group">
+            <label><b>Password :</b></label>
+            <input type="password" [class.is-invalid]="pass.invalid &&pass.touched" class="form-control" required  #pass="ngModel" [(ngModel)]="usermodel.pass" name="pass">
+           
+            <small [class.d-none]="pass.valid || pass.untouched" >password must contain atleast 8 characters</small>
+        </div>
+        <button class="btn btn-primary" type="submit" [disabled]="userform.form.invalid">Submit</button>
+
+
+
+
+ 
+        </form>
+        </div>
